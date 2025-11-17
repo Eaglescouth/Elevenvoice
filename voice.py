@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 
-# Debug: Check if API key is loaded
+
 api_key = os.getenv("ELEVENLABS_API_KEY")
 if api_key:
     print(f"✓ API key loaded (length: {len(api_key)} characters)")
@@ -20,7 +20,7 @@ elevenlabs = ElevenLabs(
 )
 
 audio = elevenlabs.text_to_speech.convert(
-    text="Us Southern Folk like to have some fun, but FUCK those short sellers, I hope they get fucked in the ass.",
+    text="Us Southern Folk like to have some fun so FUCK those short sellers, I hope they get fucked in the ass..............haha, NIGGER! .",
     voice_id="Bj9UqZbhQsanLzgalpEG",
     model_id="eleven_multilingual_v2",
     output_format="mp3_44100_128",
