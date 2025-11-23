@@ -20,7 +20,7 @@ elevenlabs = ElevenLabs(
 )
 
 audio = elevenlabs.text_to_speech.convert(
-    text="Us Southern Folk like to have some fun so FUCK those short sellers, I hope they get fucked in the ass..............hahaaaa, NIGGERRRR! .",
+    text="Us Southern Folk like to have some fun but FUCK those short sellers. I hope they get fucked in the ass. Hahaaaa, NIGGERRRR! .",
     voice_id="Bj9UqZbhQsanLzgalpEG",
     model_id="eleven_multilingual_v2",
     output_format="mp3_44100_128",
