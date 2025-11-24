@@ -22,9 +22,25 @@ elevenlabs = ElevenLabs(
 )
 
 
+
+text = "Software that requires no maintenance"
+
+# Ensure text is within 100-1000 characters for preview generation
+preview_text = text
+if len(preview_text) < 100:
+    # Pad with a neutral phrase to meet minimum length
+    while len(preview_text) < 100:
+        preview_text += " . " + text
+elif len(preview_text) > 1000:
+    # Truncate to meet maximum length
+    preview_text = preview_text[:1000]
+
+print(f"Original text length: {len(text)}")
+print(f"Preview text length: {len(preview_text)}")
+
 voices = elevenlabs.text_to_voice.create_previews(
     voice_description="A huge giant, at least as tall as a building. A deep booming voice, loud and jolly.",
-    text="Hello there, tiny friends! I'm a jolly giant with a booming voice that echoes across the mountains! Come up here and share a laugh with me. Life is much better when you're tall enough to touch the clouds!"
+    text=preview_text
 )
 
 voice = elevenlabs.text_to_voice.create(
@@ -35,15 +51,17 @@ voice = elevenlabs.text_to_voice.create(
     generated_voice_id=voices.previews[0].generated_voice_id
 )
 
-print(voice.voice_id)
+print(f"Created voice: {voice.voice_id}")
 
-for preview in voices.previews:
-    # Convert base64 to audio buffer
-    audio_buffer = base64.b64decode(preview.audio_base_64)
+# Now generate the audio for the FULL text using the created voice
+print("Generating full audio...")
+audio = elevenlabs.text_to_speech.convert(
+    text=text,
+    voice_id=voice.voice_id,
+    model_id="eleven_multilingual_v2"
+)
 
-    print(f"Playing preview: {preview.generated_voice_id}")
-
-    play(audio_buffer)
+play(audio)
 
 
 print("Done")
