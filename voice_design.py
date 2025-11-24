@@ -44,3 +44,6 @@ for preview in voices.previews:
     print(f"Playing preview: {preview.generated_voice_id}")
 
     play(audio_buffer)
+
+
+print("Done")
